@@ -1,34 +1,41 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>MDIA 2294</title>
-	
+
 	<style>
+	/* styling */
 	    thead{
 	        font-weight:bold;
 	    }
-	    
+
 	    td{
 	        padding-left:5px;
-	        padding-right:5px;	        
+	        padding-right:5p
 	    }
-	    
+
 	    td.sub-total{
-	        text-align:right;	        
+	        text-align:right;
 	    }
 
     	.greenText {
         	color: rgb(60, 190, 93);
     	}
+
+			button {
+				background-color: lightblue;
+				border-radius: 12px;
+			}
 </style>
 	</style>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script> <!-- loading the package for a confetti aniamtion-->
 </head>
 <body>
+	<!-- skeleton code -->
 	<h1 style="width: 50%; margin: auto;">MDIA 2294: ACME Corp Invoice</h1>
-	
+
 	<table style="width: 50%; margin: auto;">
 	    <thead>
 	        <tr>
@@ -78,24 +85,24 @@
 	    </tbody>
 	    <tfoot>
 	        <tr>
-	            <td colspan="4" style="text-align:right;">SUB TOTAL</td>  
-	            <td class="sub-total"><span id="sub-total"></span></td>	        
+	            <td colspan="4" style="text-align:right;">SUB TOTAL</td>
+	            <td class="sub-total"><span id="sub-total"></span></td>
 	        </tr>
 	        <tr>
-	            <td colspan="4" style="text-align:right;">DISCOUNT</td>  
-	            <td class="sub-total"><span id="discount"></span></td>	        
+	            <td colspan="4" style="text-align:right;">DISCOUNT</td>
+	            <td class="sub-total"><span id="discount"></span></td>
 	        </tr>
 	        <tr>
-	            <td colspan="4" style="text-align:right;">TAX</td>  
-	            <td class="sub-total"><span id="tax"></span></td>	        
+	            <td colspan="4" style="text-align:right;">TAX</td>
+	            <td class="sub-total"><span id="tax"></span></td>
 	        </tr>
 	        <tr>
-	            <td colspan="4" style="text-align:right;">TOTAL</td>  
-	            <td class="sub-total" style="border-top:solid black 1px"><span id="total"></span></td>	        
+	            <td colspan="4" style="text-align:right;">TOTAL</td>
+	            <td class="sub-total" style="border-top:solid black 1px"><span id="total"></span></td>
 	        </tr>
-	    </tfoot>	    
+	    </tfoot>
 	</table>
-	
+
 	<div style="width: 50%; margin: auto;"><button id="calculate">Calculate</button></div>
 	<div id="discountMessage" style="width: 50%; margin: auto;"></div>
 	<div style="width: 50%; margin: auto;">NOTE: discounts of 10% are given to orders over $250</div>
@@ -105,7 +112,7 @@
 		// Name: Daniel Kolpakov
 		// Assigment Name: ACME Corp Invoice (Assignment 1)
 
-
+//using query selector to select a specific ID to define what the constant actually refers to in the HTML document
 	const calculate_btn = document.querySelector('#calculate');
     const line_5_price = document.querySelector('#line-5-price');
     const line_5_qt = document.querySelector('#line-5-quantity');
@@ -124,10 +131,11 @@
 
 
 
-	calculate_btn.addEventListener('click', calculate, );  // if i click the calculate_btn button, the function "calculate" will run 
-	
-		console.log(calculate_btn); 
-	    function calculate() { 
+	calculate_btn.addEventListener('click', calculate, );  // if i click the calculate_btn button, the function "calculate" will run
+
+		console.log(calculate_btn); // for testing if the calculate button actually works
+
+	    function calculate() {
 
 			console.log("The calculate button was clicked!"); // making sure the button works by looking at console and checking if this message appears
 
@@ -136,7 +144,7 @@
         document.getElementById('line-1').textContent = '$' + line_1_total.toFixed(2); //using getElementbyId().textContent to get the value of each sub total. From what I understand .textContent is for regular text and numbers and .value is for values that are inside of input fields.
 
     var line_2_total = line_2_qt.value * line_2_price.value;
-        document.getElementById('line-2').textContent = '$' + line_2_total.toFixed(2); //also adding the $ prefix to each line to represent a dollar value and toFixed(2) to round to two decimal places
+        document.getElementById('line-2').textContent = '$' + line_2_total.toFixed(2); // also adding the $ prefix to each line to represent a dollar value and toFixed(2) to round to two decimal places
 
     var line_3_total = line_3_qt.value * line_3_price.value;
         document.getElementById('line-3').textContent = '$' + line_3_total.toFixed(2);
@@ -145,21 +153,21 @@
         document.getElementById('line-4').textContent = '$' + line_4_total.toFixed(2);
 
     var line_5_total = line_5_qt.value * line_5_price.value;
-        document.getElementById('line-5').textContent = '$' + line_5_total.toFixed(2);
+        document.getElementById('line-5').textContent = '$' + line_5_total.toFixed(2); // the line-1 through line-5 is referring to the span ID's (the numbers in the total column)
 
 
 
-		 // Calculate subtotal by adding all of the line totals
+		 // calculate subtotal by adding all of the line totals
 	var subtotal = line_1_total + line_2_total + line_3_total + line_4_total + line_5_total;
         subtotalDisplay.textContent = '$' + subtotal.toFixed(2);
 
-        // calculating the discount for orders over or equal to $250 
+        // calculating the discount for orders over or equal to $250
     var discount = subtotal >= 250 ? subtotal * 0.10 : 0;
         discountDisplay.textContent = '$' + discount.toFixed(2);
 
         // calculating tax at 12%
-    var tax = (subtotal - discount) * 0.12; 
-        taxDisplay.textContent = '$' + tax.toFixed(2); 
+    var tax = (subtotal - discount) * 0.12;
+        taxDisplay.textContent = '$' + tax.toFixed(2);
 
         // calculating the total
     var total = subtotal - discount + tax;
@@ -170,11 +178,11 @@
 		if (total > 250) {
         var discountMessage = document.getElementById('discountMessage');
         discountMessage.textContent = "You are eligible for a 10% discount!";
-        discountMessage.className = 'greenText'; 
-		triggerConfetti();  // If the user get's the 10% discount for their order being over $250, it triggers a confetti effect
+        discountMessage.className = 'greenText';
+		triggerConfetti();  // If the user get's the 10% discount for their order being over $250, it triggers a confetti effect. User may now celebrate
     } else {
-        document.getElementById('discountMessage').textContent = ""; 
-        document.getElementById('discountMessage').className = ''; 
+        document.getElementById('discountMessage').textContent = ""; // no discount eligibility message if the user's total is under $250 :(
+        document.getElementById('discountMessage').className = '';
     }
 	function triggerConfetti() {
         confetti({
