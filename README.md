@@ -1,4 +1,4 @@
-** Simple Invoice Calculator 
+## Simple Invoice Calculator 
 
 Features:
 
