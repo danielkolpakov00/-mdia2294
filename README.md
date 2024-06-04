@@ -1,6 +1,6 @@
-## Simple Invoice Calculator 
+# Simple Invoice Calculator 
 
-Features:
+## Features:
 
 Constants defined at top
 
