@@ -1,14 +1,14 @@
-// Simple Invoice Calculator 
+** Simple Invoice Calculator 
 
-// Features:
+Features:
 
-// Constants defined at top
+Constants defined at top
 
-// Click event listener to run function
+Click event listener to run function
 
-// Javascript Inside <script> tag
+Javascript Inside <script> tag
 
-// Artithmetics
+Arithmetics
 
 // Green text message informing user if they are eligible for a 10% discount
 
